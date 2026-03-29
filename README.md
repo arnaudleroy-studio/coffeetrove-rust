@@ -79,7 +79,7 @@ assert_eq!(grind, Some("Coarse"));
 
 ## Available Data
 
-CoffeeTrove covers 440,000+ cafes across 195 countries, 15 brewing method guides, 23 bean origin profiles, 17 coffee drink recipes, and 15 equipment reviews. The Golden Drop scoring algorithm evaluates cafes on a 0--100 scale using data completeness, independence bonus (non-chain cafes score higher), and user review signals.
+CoffeeTrove covers 440,000+ cafes across 195 countries, 15 brewing method guides, 23 bean origin profiles, 17 coffee drink recipes, and 15 equipment reviews. The Golden Drop scoring algorithm evaluates cafes on a 0--100 scale using data completeness, independence bonus (non-chain cafes score higher), and user review signals. Cafes are classified into three tiers: global chains, local chains, and independent shops. Each cafe record includes geolocation, opening hours where available, and a normalized rating that allows cross-region comparison.
 
 ## Links
 
