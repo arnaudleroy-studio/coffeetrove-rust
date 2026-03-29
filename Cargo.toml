@@ -1,6 +1,6 @@
 [package]
 name = "coffeetrove"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Arnaud Leroy <dropthehq@gmail.com>"]
 description = "Rust client for CoffeeTrove. Access 440K+ cafes, brewing guides, coffee data."
