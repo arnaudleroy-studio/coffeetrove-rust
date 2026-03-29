@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coffeetrove-rust - Rust crate for CoffeeTrove coffee data platform. Async access to 440K+ cafes and brewing guides.</title>
+    <meta name="description" content="Rust crate for CoffeeTrove coffee data platform. Async access to 440K+ cafes and brewing guides.">
+    <meta property="og:title" content="coffeetrove-rust Documentation">
+    <meta property="og:description" content="Rust crate for CoffeeTrove coffee data platform. Async access to 440K+ cafes and brewing guides.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arnaudleroy-studio.github.io/coffeetrove-rust/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="coffeetrove-rust Documentation">
+    <meta name="twitter:description" content="Rust crate for CoffeeTrove coffee data platform. Async access to 440K+ cafes and brewing guides.">
+    <link rel="canonical" href="https://arnaudleroy-studio.github.io/coffeetrove-rust/">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a0a00 0%, #2d1200 50%, #1a0a00 100%);
+            color: #e0e0e0;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        .header {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .lang-badge {
+            display: inline-block;
+            background: #F74C00;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        .tagline {
+            font-size: 1.1rem;
+            color: #999;
+        }
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 40px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        h2 .accent {
+            color: #F74C00;
+        }
+        p {
+            margin-bottom: 16px;
+            color: #bbb;
+        }
+        a {
+            color: #FF0050;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 20px 24px;
+            overflow-x: auto;
+            margin: 16px 0 24px;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+        code {
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, Consolas, monospace;
+            color: #d4d4d4;
+        }
+        .kw { color: #F74C00; font-weight: 600; }
+        .str { color: #98c379; }
+        .cmt { color: #5c6370; font-style: italic; }
+        .fn { color: #61afef; }
+        .attr { color: #c678dd; }
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 16px 0 24px;
+            list-style: none;
+        }
+        .features li {
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        .features li::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #F74C00;
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .api-method {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .api-method code {
+            font-size: 0.85rem;
+            color: #fff;
+        }
+        .api-method p {
+            margin: 8px 0 0;
+            font-size: 0.88rem;
+            color: #888;
+        }
+        .method-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 2px 8px;
+            border-radius: 3px;
+            color: #fff;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+            .method-badge.async { background: #F74C00; }
+            .method-badge.func { background: #B7410E; }
+
+        .footer {
+            margin-top: 64px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.85rem;
+            color: #555;
+        }
+        .footer a {
+            color: #777;
+        }
+        .req {
+            display: inline-block;
+            background: rgba(255,255,255,0.05);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 16px;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 32px 16px; }
+            h1 { font-size: 1.6rem; }
+            .features { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <span class="lang-badge">Rust</span>
+            <h1>coffeetrove-rust</h1>
+            <p class="tagline">Rust crate for CoffeeTrove coffee data platform. Async access to 440K+ cafes and brewing guides.</p>
+        </header>
+
+        <section>
+            <h2>About <span class="accent">CoffeeTrove</span></h2>
+            <p>
+                This library provides idiomatic Rust bindings for
+                <a href="https://coffeetrove.com">CoffeeTrove</a>, the world's most comprehensive
+                coffee data platform. Search 440,000+ cafes across 80+ countries, explore
+                brewing methods, and access the Golden Drop scoring system.
+            </p>
+            <p>
+                <a href="https://coffeetrove.com">CoffeeTrove</a> combines cafe discovery with
+                deep coffee knowledge -- from bean origins and roasting profiles to detailed
+                brewing guides with precise ratios and temperatures. The Golden Drop score
+                provides a standardized quality metric across every cafe in the directory.
+            </p>
+        </section>
+
+        <section>
+            <h2><span class="accent">#</span> Installation</h2>
+            <span class="req">Rust 1.70+ (2021 edition)</span>
+            <pre><code><span class="cmt"># Add to Cargo.toml</span>
+[dependencies]
+coffeetrove = <span class="str">"0.1"</span>
+tokio = { version = <span class="str">"1"</span>, features = [<span class="str">"full"</span>] }
+
+<span class="cmt"># Or via cargo</span>
+cargo add coffeetrove</code></pre>
+        </section>
+
+        <section>
+            <h2><span class="accent">#</span> Quick Start</h2>
+            <pre><code><span class="kw">use</span> coffeetrove::{Client, CafeSearch};
+
+<span class="attr">#[tokio::main]</span>
+<span class="kw">async fn</span> <span class="fn">main</span>() -> Result&lt;(), Box&lt;<span class="kw">dyn</span> std::error::Error&gt;&gt; {
+    <span class="kw">let</span> client = Client::<span class="fn">default</span>();
+
+    <span class="cmt">// Search 440K+ cafes worldwide</span>
+    <span class="kw">let</span> cafes = client
+        .<span class="fn">search_cafes</span>(CafeSearch {
+            query: <span class="str">"Portland"</span>.into(),
+            min_score: Some(40),
+            limit: Some(10),
+            ..Default::<span class="fn">default</span>()
+        })
+        .<span class="kw">await</span>?;
+
+    <span class="kw">for</span> cafe <span class="kw">in</span> &cafes {
+        <span class="fn">println!</span>(
+            <span class="str">"{} - Golden Drop: {}"</span>,
+            cafe.name, cafe.golden_drop_score
+        );
+    }
+
+    <span class="cmt">// Get brewing method details</span>
+    <span class="kw">let</span> method = client.<span class="fn">get_brewing_method</span>(<span class="str">"french-press"</span>).<span class="kw">await</span>?;
+    <span class="fn">println!</span>(<span class="str">"Brew time: {}"</span>, method.brew_time);
+    Ok(())
+}</code></pre>
+        </section>
+
+        <section>
+            <h2><span class="accent">#</span> Features</h2>
+            <ul class="features">
+                    <li>Fully async with tokio, zero-copy deserialization</li>
+                    <li>440,000+ cafe directory</li>
+                    <li>Golden Drop scoring system</li>
+                    <li>Brewing method guides</li>
+                    <li>Coffee bean database</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><span class="accent">#</span> API Reference</h2>
+            
+            <div class="api-method">
+                <span class="method-badge async">ASYNC</span>
+                <code>client.search_cafes(params: CafeSearch) -> Result&lt;Vec&lt;Cafe&gt;&gt;</code>
+                <p>Search the global cafe directory with filters for score, city, and chain type.</p>
+            </div>
+            <div class="api-method">
+                <span class="method-badge async">ASYNC</span>
+                <code>client.get_brewing_method(slug: &str) -> Result&lt;BrewingMethod&gt;</code>
+                <p>Detailed brewing guide with ratios, grind size, water temperature, and timing.</p>
+            </div>
+            <div class="api-method">
+                <span class="method-badge async">ASYNC</span>
+                <code>client.list_beans(opts: BeanQuery) -> Result&lt;Vec&lt;Bean&gt;&gt;</code>
+                <p>Browse coffee bean varieties with tasting notes and origin information.</p>
+            </div>
+            <div class="api-method">
+                <span class="method-badge async">ASYNC</span>
+                <code>client.get_origins() -> Result&lt;Vec&lt;Origin&gt;&gt;</code>
+                <p>Get all coffee-producing regions with altitude, harvest seasons, and flavor profiles.</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>
+                <a href="https://github.com/arnaudleroy-studio/coffeetrove-rust">Source on GitHub</a>
+                &middot;
+                <a href="https://arnaudleroy-studio.github.io/">Arnaud Leroy Studio</a>
+                &middot;
+                <a href="https://coffeetrove.com">coffeetrove.com</a>
+            </p>
+            <p style="margin-top: 8px;">MIT License &middot; &copy; 2026 Arnaud Leroy Studio</p>
+        </footer>
+    </div>
+</body>
+</html>
