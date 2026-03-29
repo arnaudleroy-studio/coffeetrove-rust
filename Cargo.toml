@@ -1,6 +1,6 @@
 [package]
 name = "coffeetrove"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Arnaud Leroy <dropthehq@gmail.com>"]
 description = "Rust client for CoffeeTrove. Access 440K+ cafes, brewing guides, coffee data."
@@ -8,6 +8,6 @@ homepage = "https://coffeetrove.com"
 repository = "https://github.com/arnaudleroy-studio/coffeetrove-rust"
 documentation = "https://coffeetrove.com/knowledge"
 license = "MIT"
-keywords = ["coffee", "cafes"]
-categories = ["data-structures"]
+keywords = ["coffee", "cafes", "brewing", "roasters", "specialty"]
+categories = ["data-structures", "web-programming"]
 readme = "README.md"
